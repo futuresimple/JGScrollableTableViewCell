@@ -21,21 +21,20 @@
         self.titleLabel.shadowOffset = CGSizeZero;
         self.titleLabel.textColor = [UIColor whiteColor];
         self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:17.0f];
+        self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+        self.titleLabel.numberOfLines = 2;
+        self.titleLabel.textAlignment = NSTextAlignmentCenter;
     }
     return self;
 }
 
-- (void)setButtonColor:(UIColor *)buttonColor forState:(UIControlState)state {
+- (void)setButtonColor:(UIColor *)buttonColor forState:(UIControlState)state
+{
     CGSize size = (CGSize){1.0f, 1.0f};
-    
     UIGraphicsBeginImageContextWithOptions(size, YES, 0.0f);
-    
     [buttonColor setFill];
-    
     [[UIBezierPath bezierPathWithRect:(CGRect){CGPointZero, size}] fill];
-    
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-    
     UIGraphicsEndImageContext();
     
     [self setBackgroundImage:img forState:state];
