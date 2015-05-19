@@ -387,6 +387,10 @@ static NSMutableDictionary *_refs;
         self.optionView.frame = (CGRect){{self.scrollViewInsets.left, self.scrollViewInsets.top}, size};
     }
     
+    for (UIView *subview in _scrollViewCoverView.subviews) {
+        subview.frame = _scrollViewCoverView.bounds;
+    }
+    
     _forceRelayout = YES; //enusres that next call is actually executed
     [self setOptionViewVisible:self.optionViewVisible]; //sets correct contentOffset
     _forceRelayout = NO;
