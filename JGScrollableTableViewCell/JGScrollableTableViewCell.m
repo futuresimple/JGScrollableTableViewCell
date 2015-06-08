@@ -290,7 +290,7 @@ static NSMutableDictionary *_refs;
     CGFloat optionViewWidth = CGRectGetWidth(_optionView.frame);
 
     // For ignoring the slow & gentle swipes
-    if (fabsf(velocity.x) < 0.5) {
+    if (fabs(velocity.x) < 0.5) {
         targetContentOffset->x = _scrollView.contentOffset.x;
     }
     
