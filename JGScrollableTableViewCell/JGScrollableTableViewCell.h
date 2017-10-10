@@ -22,7 +22,7 @@
 @end
 
 
-typedef NS_ENUM(BOOL, JGScrollableTableViewCellSide) {
+typedef NS_ENUM(NSUInteger, JGScrollableTableViewCellSide) {
     JGScrollableTableViewCellSideLeft = NO,
     JGScrollableTableViewCellSideRight = YES
 };
