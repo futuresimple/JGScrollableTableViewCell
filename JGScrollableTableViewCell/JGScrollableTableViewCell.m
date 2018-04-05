@@ -422,11 +422,11 @@ static NSMutableDictionary *_refs;
     }
     
     [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
-        [_scrollView.panGestureRecognizer setEnabled:NO];
-        [_scrollView scrollRectToVisible:(CGRect){scrollDestination, {1.0f, 1.0f}} animated:NO];
+        [self->_scrollView.panGestureRecognizer setEnabled:NO];
+        [self->_scrollView scrollRectToVisible:(CGRect){scrollDestination, {1.0f, 1.0f}} animated:NO];
     } completion:^(__unused BOOL finished) {
-        [_scrollView.panGestureRecognizer setEnabled:YES];
-        _scrollView.delegate = self;
+        [self->_scrollView.panGestureRecognizer setEnabled:YES];
+        self->_scrollView.delegate = self;
         if (completion) {
             completion();
         }
@@ -489,7 +489,7 @@ static NSMutableDictionary *_refs;
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     void (^actions)(BOOL select) = ^(BOOL select) {
-        _optionView.hidden = select || self.selected;
+        self->_optionView.hidden = select || self.selected;
     };
     
     if (highlighted) {
@@ -511,7 +511,7 @@ static NSMutableDictionary *_refs;
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     void (^actions)(BOOL select) = ^(BOOL select) {
-        _optionView.hidden = select || self.highlighted;
+        self->_optionView.hidden = select || self.highlighted;
     };
     
     if (selected) {
