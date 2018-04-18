@@ -12,7 +12,7 @@
 
 #import "JGScrollableTableViewCellAccessoryButton.h"
 
-@interface JGTestViewController () <JGScrollableTableViewCellDelegate> {
+@interface JGTestViewController () <JGScrollableTableViewCellDelegate,IPQJGScrollableTableViewCellDelegate> {
     NSIndexPath *_openedIndexPath;
     BOOL _left;
 }
@@ -44,6 +44,17 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - IPQJGScrollableTableViewCellDelegate
+-(void)swipTableViewCellLeftButton:(JGScrollableTableViewCell*)swipeTableViewCell{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:swipeTableViewCell];
+    NSLog(@"indexpath = %d",indexPath.row);
+    NSLog(@"Left Button is pressed");
+}
+-(void)swipTableViewCellRightButton:(JGScrollableTableViewCell*)swipeTableViewCell{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:swipeTableViewCell];
+    NSLog(@"indexpath = %d",indexPath.row);
+    NSLog(@"Right Button is pressed");
+}
 
 #pragma mark - JGScrollableTableViewCellDelegate
 
@@ -90,6 +101,7 @@
     [cell setOptionView:cell.optionView side:(_left ? JGScrollableTableViewCellSideLeft : JGScrollableTableViewCellSideRight)];
     
     cell.scrollDelegate = self;
+    cell.ipqDelegate = self;
     
     [cell setOptionViewVisible:[_openedIndexPath isEqual:indexPath]];
 

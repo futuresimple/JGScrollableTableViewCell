@@ -24,6 +24,8 @@
         
         [actionView setTitle:@"Sample" forState:UIControlStateNormal];
         
+        [actionView addTarget:self action:@selector(actionRightButton) forControlEvents:UIControlEventTouchUpInside];//add left action button for pressed
+        
         actionView.frame = CGRectMake(80.0f, 0.0f, 80.0f, 0.0f); //width is the only frame parameter that needs to be set on the option view
         actionView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         
@@ -41,6 +43,8 @@
         
         UIView *optionView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 160.0f, 0.0f)];
         
+        [moreView addTarget:self action:@selector(actionLeftButton) forControlEvents:UIControlEventTouchUpInside];//add right button for pressed
+        
         [optionView addSubview:moreView];
         [optionView addSubview:actionView];
         
@@ -48,7 +52,16 @@
     }
     return self;
 }
-
+-(void)actionLeftButton{
+        if ([self.ipqDelegate respondsToSelector:@selector(swipTableViewCellLeftButton:)]) {
+            [self.ipqDelegate swipTableViewCellLeftButton:self];
+        }
+}
+-(void)actionRightButton{
+        if ([self.ipqDelegate respondsToSelector:@selector(swipTableViewCellRightButton:)]) {
+            [self.ipqDelegate swipTableViewCellRightButton:self];
+        }
+}
 - (void)setGrabberVisible:(BOOL)visible {
     if (visible) {
         UIView *grabber = [[UIView alloc] initWithFrame:(CGRect){CGPointZero, {20.0f, 35.0f}}];
